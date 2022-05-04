@@ -25,7 +25,6 @@ app.post("/sig-in", async (req, res) => {
 
     try {
         const exist = await db.collection("clientes").findOne({email: user.email})
-        console.log(exist)
         if(exist){
             res.status(404).send("Email já cadastrado")
             return
@@ -36,6 +35,29 @@ app.post("/sig-in", async (req, res) => {
         res.send("erro ao cadastrar o usuário")
     }
 })
+
+app.post("/log-in", async (req, res) => {
+
+    try{
+        const user = await db.collection("clientes").findOne({email: req.body.email})
+        if(!user){
+            res.status(500).send("Email não cadastrado")
+            return
+        }
+        const answer = bcrypt.compareSync(req.body.password, user.password)
+        if(answer){
+            res.sendStatus(200)
+            return
+        } else {
+            res.status(500).send("Senha incorreta")
+            return
+        }
+
+    } catch (e) {
+        res.status(500).send("ocorreu um erro")
+    }  
+})
+
 
 const port = process.env.port
 app.listen(port, () => {
