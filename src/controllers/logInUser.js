@@ -16,7 +16,7 @@ export async function logInUser(req, res){
                 token: token,
                 id: user.id
             })
-            res.status(200).send(sessions)
+            res.status(200).send(token)
             return
         } else {
             res.status(500).send("Senha incorreta")
