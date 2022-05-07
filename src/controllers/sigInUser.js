@@ -9,7 +9,6 @@ export async function sigInUser(req, res){
         email: req.body.email,
         password: passCript
     }
-    // console.log(user)
 
     try {
         const exist = await db.collection("clientes").findOne({email: user.email})

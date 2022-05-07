@@ -1,29 +1,24 @@
-import express, { text } from "express";
+import express from "express";
 import cors from "cors"
 import dotenv from "dotenv"
 
-
-// import db from "./controllers/bank.js";
-import { sigInUser } from "./controllers/sigInUser.js";
-import { logInUser } from "./controllers/logInUser.js";
-import { historicUser } from "./controllers/historicUser.js";
-import { trading } from "./controllers/trading.js";
+import logRouter from "./routes/logInRoutes.js";
+import sigRouter from "./routes/sigInRoutes.js";
+import historicRouter from "./routes/historicRoutes.js";
+import tradingRouter from "./routes/tradingRoutes.js";
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 dotenv.config()
 
+app.use(sigRouter)
 
+app.use(logRouter)
 
-app.post("/sig-in", sigInUser)
+app.use(historicRouter)
 
-app.post("/log-in", logInUser)
-
-app.get("/historic", historicUser)
-
-app.post("/trading", trading)
-
+app.use(tradingRouter)
 
 const port = process.env.port
 app.listen(port, () => {
