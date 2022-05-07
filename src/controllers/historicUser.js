@@ -3,13 +3,8 @@ import db from "./bank.js";
 export async function historicUser(req, res){
     try {
         const token = req.headers.authorization.replace("Bearer", "").trim()
-        if(!token) return res.status(401).send("Token nao enviado")
-
-        const session = await db.collection("sessions").findOne({token})
-        if(!session) return res.status(402).send("token não encontrado")
-
+        const session = await db.collection("sessions").findOne({ token })
         const historic = await db.collection("historic").find({id: session.id}).toArray()
-
         let amount = 0
         for(let i = 0; i<historic.length; i++){
             if(historic[i].type == "input"){

@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import db from "./bank.js";
-import { v4 } from "uuid";
 import dayjs from 'dayjs';
 
 export async function trading(req, res){
@@ -8,11 +7,7 @@ export async function trading(req, res){
         const date =  dayjs().format("DD/MM/YYYY")
         const {valueTrading, description, type} = req.body
         const token = req.headers.authorization.replace("Bearer", "").trim()
-
-        if(!token) return res.status(401).send("Token nao enviado")
-        
-        const session = await db.collection("sessions").findOne({token: token})
-        if(!session) return res.status(402).send("token não encontrado")
+        const session = await db.collection("sessions").findOne({ token })
 
         await db.collection("historic").insertOne({ id: session.id,
                                                     date: date,
