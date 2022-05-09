@@ -6,5 +6,6 @@ export default async function notFoundEmail(req, res, next){
         res.status(500).send("Email não cadastrado")
         return
     }
+    res.locals.user = user
     next()
 }

@@ -4,6 +4,7 @@ import db from "./bank.js";
 export async function sigInUser(req, res){
 
     const passCript = bcrypt.hashSync(req.body.password, 10);
+    
     const user = {
         id: Date.now(),
         name: req.body.name,
