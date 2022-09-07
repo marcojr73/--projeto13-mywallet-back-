@@ -23,7 +23,8 @@ app.use(tradingRouter)
 
 app.use(deleteRouter)
 
-const port = process.env.port
-app.listen(port, () => {
-    console.log("servidor em pé na porta ", process.env.PORT)
+const PORT = process.env.PORT
+
+app.listen(PORT, () => {
+    console.log("servidor em pé na porta ", PORT)
 })
