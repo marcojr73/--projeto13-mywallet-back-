@@ -5,6 +5,6 @@ import passwordTrue from "../middlewares/passwordTrue.js";
 
 const logRouter = Router()
 
-logRouter.post("/log-in",notFoundEmail, passwordTrue, logInUser)
+logRouter.post("/sign-in",notFoundEmail, passwordTrue, logInUser)
 
 export default logRouter

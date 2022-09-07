@@ -4,6 +4,6 @@ import validEmail from "../middlewares/validEmail.js"
 
 const sigRouter = Router()
 
-sigRouter.post("/sig-in",validEmail, sigInUser)
+sigRouter.post("/sign-up",validEmail, sigInUser)
 
 export default sigRouter
