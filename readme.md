@@ -36,7 +36,6 @@ Instale meu projeto e configure o .env como no exemplo
 - Node.js
 - Express
 - layered architecture
-- Validação com Joi
 - Criptografia de senhas
 - Geração de token com uuid
 - Mongo Db
